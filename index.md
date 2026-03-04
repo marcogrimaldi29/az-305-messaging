@@ -38,10 +38,10 @@ This companion repository to the [AZ-305 Study Notes](https://marcogrimaldi29.co
 
 ## 🔑 Why Messaging Matters for AZ-305
 
-Messaging patterns surface across **all four exam domains**:
+Messaging patterns surface across **various exam domains**:
 
-- **Domain 2 — Data Storage:** choosing Storage Queues vs Service Bus for decoupling
-- **Domain 4 — Infrastructure Solutions:** event-driven architecture with Event Grid; high-throughput ingestion with Event Hubs
+- **Data Storage:** choosing Storage Queues vs Service Bus for decoupling
+- **Infrastructure Solutions:** event-driven architecture with Event Grid; high-throughput ingestion with Event Hubs
 - **Business Continuity:** geo-disaster recovery for Service Bus Premium; Event Hubs Geo-DR
 - **Well-Architected Framework:** reliability through async messaging; cost optimisation via tier selection
 
