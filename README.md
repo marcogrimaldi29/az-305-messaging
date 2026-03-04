@@ -1,4 +1,4 @@
-# 📨 AZ-305: Azure Messaging Services — Deep Dive
+# 🥽 AZ-305: Azure Messaging Services — Deep Dive
 
 ### Study Notes Repository — 2026 Edition
 
@@ -11,7 +11,7 @@
 > 📅 **Notes Version:** 2026  
 > 🌐 **Published site:** [marcogrimaldi29.com/az-305-messaging](https://marcogrimaldi29.com/az-305-messaging/)  
 > ✍️ **Author:** [Marco Grimaldi](https://www.linkedin.com/in/marco-grimaldi29/)  
-> 🔗 **Companion repo:** [az-305-study-notes](https://marcogrimaldi29.com/az-305-study-notes/)
+> 🔗 **Companion repos:** [📘 AZ-305 Study Notes](https://marcogrimaldi29.com/az-305-study-notes/) · [🥽 AZ-305: Data & Analytics Services — Deep Dive](https://marcogrimaldi29.com/az-305-data-analytics)
 
 ---
 
