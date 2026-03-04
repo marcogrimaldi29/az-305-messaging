@@ -59,6 +59,7 @@ flowchart LR
 The top-level container for all Service Bus entities (queues, topics, subscriptions). A namespace maps to a **fully qualified domain name** and is the unit of billing and access control.
 
 ### Queues
+
 | Property | Detail |
 |----------|--------|
 | Delivery model | At-least-once; exactly-once via peek-lock + settlement |
@@ -70,6 +71,7 @@ The top-level container for all Service Bus entities (queues, topics, subscripti
 | Dead-letter queue | ✅ Automatic sub-queue for failed / expired messages |
 
 ### Topics & Subscriptions
+
 | Property | Detail |
 |----------|--------|
 | Pattern | Publish/Subscribe (fan-out) |
@@ -165,6 +167,7 @@ Premium namespaces are provisioned in **Messaging Units (MUs)** — dedicated co
 | **TLS in transit** | TLS 1.2+ enforced |
 
 ### Built-in RBAC Roles
+
 | Role | Permissions |
 |------|-------------|
 | `Azure Service Bus Data Owner` | Full control |

@@ -1,9 +1,16 @@
+##############################################################
+# AZ-305 Azure Messaging Deep Dive
+# Theme: Just the Docs (MIT License)
+# Maintained by Marco Grimaldi — https://marcogrimaldi29.com
+##############################################################
+remote_theme: just-the-docs/just-the-docs
+
+# ── Site identity ─────────────────────────────────────────
 title: "AZ-305 Azure Messaging Deep Dive"
 description: "AZ-305 Exam Prep — Azure Service Bus, Storage Queues, Event Grid & Event Hubs: product overviews, feature comparisons, SKU tables, and exam caveats."
-baseurl: "/az-305-messaging"
 url: "https://marcogrimaldi29.com"
-
-remote_theme: just-the-docs/just-the-docs
+baseurl: "/az-305-messaging"
+logo: "/assets/images/logo-sunrise-domain.jpg"
 
 # ── Theme settings ──────────────────────────────────────────────────
 color_scheme: dark
@@ -27,7 +34,7 @@ nav_external_links:
 
 # ── Aux links ────────────────────────────────────────────────────────
 aux_links:
-  "🌐 marcogrimaldi29.com":
+  "🏠 Personal Hub of Marco Grimaldi":
     - "https://marcogrimaldi29.com"
   "📘 AZ-305 Main Notes":
     - "https://marcogrimaldi29.com/az-305-study-notes/"

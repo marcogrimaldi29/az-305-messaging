@@ -62,6 +62,7 @@ flowchart LR
 ## Core Concepts
 
 ### Events vs Messages
+
 | | Event | Message |
 |---|-------|---------|
 | **Definition** | Lightweight notification of a state change | Data to be processed or transferred |
@@ -72,6 +73,7 @@ flowchart LR
 > ⚠️ **Exam Caveat:** Event Grid sends **events**, not full message payloads. If the scenario involves large data transfer or guaranteed processing by exactly one consumer, the answer is Service Bus or Storage Queues, not Event Grid.
 
 ### Topics
+
 | Topic Type | Description |
 |------------|-------------|
 | **System Topics** | Built-in topics for Azure services (Blob, Resource Groups, Event Hubs, etc.) |
@@ -87,6 +89,7 @@ An event subscription defines:
 4. **Dead-lettering** — where to send undeliverable events (a Storage Blob container)
 
 ### Delivery Guarantee
+
 | Property | Detail |
 |----------|--------|
 | Delivery model | **At-least-once** |
