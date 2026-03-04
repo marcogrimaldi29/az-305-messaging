@@ -47,6 +47,7 @@ flowchart LR
 A Storage Queue is a flat list of messages stored in a storage account. A single storage account can hold **up to 500 TB of queue data** across an unlimited number of queues.
 
 ### Message
+
 | Property | Detail |
 |----------|--------|
 | Format | UTF-8 text (often Base64-encoded binary) |
@@ -108,6 +109,7 @@ Consumers can use **long polling** (up to 20 seconds wait) to reduce empty-respo
 | **Encryption at rest** | AES-256 by default; CMK supported via Key Vault |
 
 ### Built-in RBAC Roles
+
 | Role | Permissions |
 |------|-------------|
 | `Storage Queue Data Contributor` | Read, write, delete queues and messages |

@@ -120,6 +120,7 @@ Cross-namespace atomic operations require saga patterns or compensating transact
 ## 📋 Must-Memorise Numbers
 
 ### Message & Event Size Limits
+
 | Service | Max Size | Memory Hook |
 |---------|---------|-------------|
 | Storage Queues | **64 KB** | "Sixty-four is tiny" |
@@ -129,6 +130,7 @@ Cross-namespace atomic operations require saga patterns or compensating transact
 | Service Bus Premium | **100 MB** | "One hundred — largest" |
 
 ### Retention Periods
+
 | Service | Retention |
 |---------|-----------|
 | Storage Queues | ≤ 7 days (or infinite with `-1`) |
@@ -138,6 +140,7 @@ Cross-namespace atomic operations require saga patterns or compensating transact
 | Event Hubs Premium/Dedicated | 1–**90 days** |
 
 ### SLA Values
+
 | Service / Tier | SLA |
 |---------------|-----|
 | Service Bus Basic / Standard | **99.9%** |
@@ -150,6 +153,7 @@ Cross-namespace atomic operations require saga patterns or compensating transact
 | Event Hubs Dedicated | **99.99%** |
 
 ### Consumer Limits
+
 | Service | Consumer Groups / Subscriptions |
 |---------|--------------------------------|
 | Service Bus | Up to **2,000 subscriptions** per topic |
@@ -158,6 +162,7 @@ Cross-namespace atomic operations require saga patterns or compensating transact
 | Event Hubs Premium | **100** consumer groups |
 
 ### Partition Limits
+
 | Service | Max Partitions |
 |---------|---------------|
 | Event Hubs Standard | **32** |
