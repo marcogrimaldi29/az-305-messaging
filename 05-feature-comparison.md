@@ -57,15 +57,15 @@ flowchart TD
 | Feature | ☁️ Service Bus | 📦 Storage Queues | ⚡ Event Grid | 🌊 Event Hubs |
 |---------|-------------|-----------------|-------------|-------------|
 | **Primary pattern** | Message queue / pub-sub | Simple queue | Event routing | Event streaming |
-| **Message / event size** | 256 KB (Std) / **100 MB** (Premium) | **64 KB** | **1 MB** | **1 MB** (default) / **~1 MB** max |
+| **Message / event size** | 256 KB (Standard) / **100 MB** (Premium) | **64 KB** | **1 MB** | **1 MB** (default) / **~1 MB** max |
 | **Max queue / topic size** | 80 GB | **500 TB** | N/A (push) | N/A (log-based) |
 | **Throughput** | Moderate | Moderate | Up to 10M events/sec | **Millions/sec** |
-| **Ordering** | FIFO with **Sessions** | Best-effort | Not guaranteed | Per-partition only |
+| **Ordering** | **FIFO with Sessions** | Best-effort (FIFO not guaranteed) | Not guaranteed | Per-partition only |
 | **At-least-once delivery** | ✅ | ✅ | ✅ | ✅ |
 | **Exactly-once delivery** | ✅ (peek-lock + settle) | ❌ | ❌ | ❌ |
 | **Dead-letter queue** | ✅ Built-in | ❌ (manual) | ✅ (to Blob) | ❌ |
 | **Message replay** | ❌ | ❌ | ❌ | ✅ |
-| **Retention** | TTL configurable (≤7 days default) | TTL ≤7 days | 24 hours retry window | 1–**90 days** |
+| **Retention** | TTL configurable (≤7 days default) | TTL ≤7 days | 24 hours retry window | **1–90 days** |
 | **Transactions** | ✅ (within namespace) | ❌ | ❌ | ❌ |
 | **Pub/Sub (fan-out)** | ✅ (Topics) | ❌ | ✅ | ✅ (consumer groups) |
 | **Duplicate detection** | ✅ | ❌ | ❌ | ❌ |
@@ -130,7 +130,7 @@ Use this table when a scenario describes an **event-driven** or **streaming** ne
 | Service Bus | Basic / Standard | 99.9% |
 | Service Bus | Premium + Availability Zones | **99.99%** |
 | Storage Queues | Standard (LRS/GRS) | 99.9% |
-| Storage Queues | Standard (RA-GRS, read) | **99.99%** read |
+| Storage Queues | Standard (RA-GRS, read) | **99.99%** (read) |
 | Event Grid | All (Custom / System Topics) | **99.99%** |
 | Event Hubs | Basic / Standard | 99.9% |
 | Event Hubs | Premium | 99.95% |
@@ -174,7 +174,7 @@ Use this table when a scenario describes an **event-driven** or **streaming** ne
 | Event Grid | ✅ Namespace (Std/Prem) | ❌ | ✅ All tiers |
 | Event Hubs | ✅ Premium/Dedicated | ✅ Premium/Dedicated | ✅ All tiers |
 
-> ⚠️ **Exam Caveat:** Storage Queues have private endpoint support on **all tiers** (it's a Storage account feature). Service Bus, Event Grid (namespace), and Event Hubs require a **premium/dedicated tier** for private endpoint support.
+> ⚠️ **Exam Caveat:** Storage Queues have private endpoint support on **all tiers** (it's a Storage account feature). Service Bus, Event Grid (namespace), and Event Hubs require a **Premium/Dedicated tier** for private endpoint support.
 
 ---
 

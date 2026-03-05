@@ -83,19 +83,19 @@ Plan partitions upfront based on expected parallelism. Increasing partitions req
 
 ---
 
-### Trap 8 — SLA 99.99% without premium is only Event Grid
+### Trap 8 — SLA 99.99% without Premium SKU is only Event Grid
 > Service Bus: 99.99% requires **Premium + Availability Zones**  
 > Event Hubs: 99.99% requires **Dedicated cluster**  
 > Storage Queues: 99.99% read-only via **RA-GRS** (not write)  
-> Event Grid: **99.99% on all tiers** — no premium required
+> Event Grid: **99.99% on all tiers** — no Premium required
 
 ---
 
 ### Trap 9 — Private Endpoints for Storage Queues don't require premium
-> ❌ "Private endpoints for Storage Queues require a premium storage tier"  
+> ❌ "Private endpoints for Storage Queues require a Premium storage tier"  
 > ✅ Private endpoints on Azure Storage (including queues) are available on **all storage tiers**
 
-Service Bus, Event Hubs, and Event Grid namespace require a premium/dedicated tier for private endpoints. Storage is different.
+Service Bus, Event Hubs, and Event Grid namespace require a Premium/Dedicated tier for private endpoints. Storage is different.
 
 ---
 
@@ -115,7 +115,7 @@ Cross-namespace atomic operations require saga patterns or compensating transact
 
 ---
 
-### Trap 12 — Storage Queue message TTL can be set to infinite
+### Trap 12 — Storage Queue message TTL can be set to infinite (`-1`)
 > A TTL of `-1` on a Storage Queue message means it **never expires**. Most candidates assume 7 days is the hard maximum, but infinite TTL is valid.
 
 ---
@@ -139,8 +139,8 @@ Cross-namespace atomic operations require saga patterns or compensating transact
 | Storage Queues | ≤ 7 days (or infinite with `-1`) |
 | Service Bus | Configurable; default 14 days |
 | Event Grid | 24-hour retry window |
-| Event Hubs Standard | 1–**7 days** |
-| Event Hubs Premium/Dedicated | 1–**90 days** |
+| Event Hubs Standard | **1–7 days** |
+| Event Hubs Premium/Dedicated | **1–90 days** |
 
 ### SLA Values
 
@@ -252,10 +252,6 @@ Before sitting the exam, verify you can answer these without hesitation:
 - [ ] Can Event Hubs partition count be changed after creation?
 - [ ] What is the max event size in Event Grid?
 - [ ] What is the maximum retention period for Event Hubs?
-
----
-
-*Good luck on the exam! 🏅 — [Marco Grimaldi](https://marcogrimaldi29.com)*
 
 ---
 
