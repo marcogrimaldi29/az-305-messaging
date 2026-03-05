@@ -236,4 +236,3 @@ flowchart TD
 ---
 
 [← Back to Home](/az-305-messaging/) | [02 — Azure Storage Queues →](/az-305-study-notes/02-storage-queues/)
-

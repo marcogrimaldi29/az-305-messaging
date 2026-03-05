@@ -9,9 +9,10 @@
 
 > 🎯 **Goal:** Master the four Azure Messaging services for the **AZ-305: Designing Microsoft Azure Infrastructure Solutions** exam  
 > 📅 **Notes Version:** 2026  
-> 🌐 **Published site:** [marcogrimaldi29.com/az-305-messaging](https://marcogrimaldi29.com/az-305-messaging/)  
+> 🌐 **Published site:** [🥽 AZ-305: Azure Messaging Services — Deep Dive](https://marcogrimaldi29.com/az-305-messaging/)  
 > ✍️ **Author:** [Marco Grimaldi](https://www.linkedin.com/in/marco-grimaldi29/)  
-> 🔗 **Companion repos:** [📘 AZ-305 Study Notes](https://marcogrimaldi29.com/az-305-study-notes/) · [🥽 AZ-305: Data & Analytics Services — Deep Dive](https://marcogrimaldi29.com/az-305-data-analytics)
+> - 🔗 **Companion repos:** [📘 AZ-305 Study Notes](https://marcogrimaldi29.com/az-305-study-notes/) · [🥽 AZ-305: Data & Analytics Services — Deep Dive](https://marcogrimaldi29.com/az-305-data-analytics/) · [🥽 AZ-305: Azure Compute Services — Deep Dive](https://marcogrimaldi29.com/az-305-compute/)
+
 
 ---
 
