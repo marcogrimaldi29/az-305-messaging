@@ -2,6 +2,9 @@
 layout: default
 title: "05 — Feature Comparison"
 nav_order: 6
+description: "The definitive side-by-side feature comparison of Azure Service Bus, Storage Queues, Event Grid, and Event Hubs for AZ-305: Designing Microsoft Azure Infrastructure Solutions — decision tables, SLA comparison, and exam tips."
+permalink: /05-feature-comparison/
+mermaid: true
 ---
 
 # 📊 Feature Comparison — All Four Services
@@ -196,3 +199,7 @@ Use this table when a scenario describes an **event-driven** or **streaming** ne
 | Storage Queues | `Storage Queue Data Contributor`, `Message Sender`, `Message Processor` |
 | Event Grid | `EventGrid Contributor`, `EventGrid Data Sender` |
 | Event Hubs | `Azure Event Hubs Data Owner`, `Data Sender`, `Data Receiver` |
+
+---
+
+[← 04 — Azure Event Hubs](/az-305-messaging/04-event-hubs/) | [06 — Exam Caveats & Cheatsheet →](/az-305-messaging/06-exam-caveats-cheatsheet/)

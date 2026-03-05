@@ -2,6 +2,9 @@
 layout: default
 title: "04 — Azure Event Hubs"
 nav_order: 5
+description: "Deep dive into Azure Event Hubs for AZ-305: Designing Microsoft Azure Infrastructure Solutions — features, SKUs, integration patterns, and exam scenarios."
+permalink: /04-event-hubs/
+mermaid: true
 ---
 
 # 🌊 Azure Event Hubs
@@ -227,3 +230,7 @@ Event Hubs includes a built-in **Schema Registry** (Standard and above) for mana
 | Isolate Event Hubs from public internet | **Event Hubs Premium + Private Endpoint** |
 | Multiple independent analytics pipelines on same stream | **Event Hubs Consumer Groups** |
 | Guaranteed event ordering across all partitions | NOT possible in Event Hubs — ordering is per-partition only |
+
+---
+
+[← 03 — Azure Event Grid](/az-305-messaging/03-event-grid/) | [05 — Feature Comparison →](/az-305-messaging/05-feature-comparison/)

@@ -2,6 +2,9 @@
 layout: default
 title: "06 — Exam Caveats & Cheatsheet"
 nav_order: 7
+description: "Last-minute review for AZ-305: Designing Microsoft Azure Infrastructure Solutions — the most common exam traps, must-memorise numbers, and a quick-reference decision tree for Azure Messaging services."
+permalink: /06-exam-caveats-cheatsheet/
+mermaid: true
 ---
 
 # 🎯 Exam Caveats & Quick-Reference Cheatsheet
@@ -253,3 +256,7 @@ Before sitting the exam, verify you can answer these without hesitation:
 ---
 
 *Good luck on the exam! 🏅 — [Marco Grimaldi](https://marcogrimaldi29.com)*
+
+---
+
+[← 05 - Feature Comparison](/az-305-messaging/05-feature-comparison/) | [Back to Home →](/az-305-messaging/)
