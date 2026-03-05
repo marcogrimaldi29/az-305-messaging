@@ -17,11 +17,11 @@ mermaid: true
 [![Personal Hub of Marco Grimaldi](https://img.shields.io/badge/Blog-marcogrimaldi29.com-blue?logo=rss)](https://marcogrimaldi29.com)
 [![AZ-305 Study Notes](https://img.shields.io/badge/AZ--305-Study%20Notes-blue?logo=microsoftazure)](https://marcogrimaldi29.com/az-305-study-notes/)
 
-> 🎯 **Purpose:** Deep-dive study notes covering the four core Azure Messaging services tested in the **AZ-305: Designing Microsoft Azure Infrastructure Solutions** exam.  
-> 📅 **Version:** 2026  
-> ✍️ **Author:** [Marco Grimaldi](https://www.linkedin.com/in/marco-grimaldi29/)  
-> 🌐 **Published:** [marcogrimaldi29.com/az-305-messaging](https://marcogrimaldi29.com/az-305-messaging/)
-> 🔗 **Companion repos:** [📘 AZ-305 Study Notes](https://marcogrimaldi29.com/az-305-study-notes/) · [🥽 AZ-305: Data & Analytics Services — Deep Dive](https://marcogrimaldi29.com/az-305-data-analytics/)
+> - 🎯 **Purpose:** Deep-dive study notes covering the four core Azure Messaging services tested in the **AZ-305: Designing Microsoft Azure Infrastructure Solutions** exam.  
+> - 📅 **Version:** 2026  
+> - ✍️ **Author:** [Marco Grimaldi](https://www.linkedin.com/in/marco-grimaldi29/)  
+> - 🌐 **Published:** [marcogrimaldi29.com/az-305-messaging](https://marcogrimaldi29.com/az-305-messaging/)
+> - 🔗 **Companion repos:** [📘 AZ-305 Study Notes](https://marcogrimaldi29.com/az-305-study-notes/) · [🥽 AZ-305: Data & Analytics Services — Deep Dive](https://marcogrimaldi29.com/az-305-data-analytics/)
 
 ---
 
@@ -33,8 +33,8 @@ This companion repository to the [AZ-305 Study Notes](https://marcogrimaldi29.co
 |------|----------|
 | [📨 01 — Azure Service Bus](01-service-bus.md) | Queues, Topics, Sessions, Dead-lettering, SKUs, SLAs |
 | [📦 02 — Azure Storage Queues](02-storage-queues.md) | AT-LEAST-ONCE, visibility timeout, limits, integration |
-| [⚡ 03 — Azure Event Grid](03-event-grid.md) | Event routing, topics, domains, filters, delivery |
-| [🌊 04 — Azure Event Hubs](04-event-hubs.md) | Partitions, consumer groups, Capture, Kafka, SKUs |
+| [🏁 03 — Azure Event Grid](03-event-grid.md) | Event routing, topics, domains, filters, delivery |
+| [🟩 04 — Azure Event Hubs](04-event-hubs.md) | Partitions, consumer groups, Capture, Kafka, SKUs |
 | [📊 05 — Feature Comparison](05-feature-comparison.md) | Side-by-side tables: delivery, ordering, replay, limits |
 | [🎯 06 — Exam Caveats & Cheatsheet](06-exam-caveats-cheatsheet.md) | Decision trees, exam traps, quick-fire facts |
 
