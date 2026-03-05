@@ -7,7 +7,7 @@ permalink: /01-service-bus/
 mermaid: true
 ---
 
-# ☁️ Azure Service Bus
+# 📨 Azure Service Bus
 {: .no_toc }
 
 **Enterprise-grade message broker with queues, topics, and full transactional support**

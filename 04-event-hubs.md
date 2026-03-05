@@ -7,7 +7,7 @@ permalink: /04-event-hubs/
 mermaid: true
 ---
 
-# 🌊 Azure Event Hubs
+# 🟩 Azure Event Hubs
 {: .no_toc }
 
 **Hyper-scale event streaming platform — ingest millions of events per second with replay**

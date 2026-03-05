@@ -7,7 +7,7 @@ permalink: /03-event-grid/
 mermaid: true
 ---
 
-# ⚡ Azure Event Grid
+# 🏁 Azure Event Grid
 {: .no_toc }
 
 **Serverless event routing at scale — react to state changes across Azure and custom sources**
