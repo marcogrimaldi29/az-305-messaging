@@ -1,7 +1,10 @@
 ---
 layout: home
-title: Home
+title: AZ-305 Azure Messaging Services Deep Dive
 nav_order: 1
+description: "Study notes for AZ-305: Designing Microsoft Azure Infrastructure Solutions — deep dive into Azure Messaging services (Service Bus, Storage Queues, Event Grid, Event Hubs) with feature comparisons, exam tips, and decision trees."
+permalink: /
+mermaid: true
 ---
 
 # 🥽 AZ-305: Azure Messaging Services — Deep Dive

@@ -2,6 +2,9 @@
 layout: default
 title: "03 — Azure Event Grid"
 nav_order: 4
+description: "Deep dive into Azure Event Grid for AZ-305: Designing Microsoft Azure Infrastructure Solutions — features, SKUs, integration patterns, and exam scenarios."
+permalink: /03-event-grid/
+mermaid: true
 ---
 
 # ⚡ Azure Event Grid
@@ -206,3 +209,7 @@ Event Grid supports three filter types on subscriptions:
 | Multi-tenant SaaS app sending per-customer events | **Event Domains** |
 | High-throughput telemetry stream (millions/sec) | **NOT Event Grid** → use **Event Hubs** |
 | Audit all resource changes across a subscription | **Event Grid** (Azure Resource Manager system topic → Storage) |
+
+---
+
+[← 02 — Azure Storage Queues](/az-305-messaging/02-storage-queues/) | [04 — Azure Event Hubs →](/az-305-study-notes/04-event-hubs/)

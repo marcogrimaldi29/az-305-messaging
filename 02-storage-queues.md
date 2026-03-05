@@ -2,6 +2,9 @@
 layout: default
 title: "02 — Azure Storage Queues"
 nav_order: 3
+description: "Deep dive into Azure Storage Queues for AZ-305: Designing Microsoft Azure Infrastructure Solutions — features, SKUs, integration patterns, and exam scenarios."
+permalink: /02-storage-queues/
+mermaid: true
 ---
 
 # 📦 Azure Storage Queues
@@ -155,3 +158,7 @@ You can alert on `ApproximateMessageCount` to detect growing backlogs.
 | Message > 64 KB | Azure **Service Bus** (Standard: 256 KB, Premium: 100 MB) |
 | Transactions across queue operations | Azure **Service Bus** |
 | Simple trigger for Azure Functions, lowest cost | Azure **Storage Queue trigger** |
+
+---
+
+[← 01 — Azure Service Bus](/az-305-messaging/01-service-bus/) | [02 — Azure Storage Queues →](/az-305-study-notes/02-storage-queues/)

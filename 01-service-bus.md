@@ -2,6 +2,9 @@
 layout: default
 title: "01 — Azure Service Bus"
 nav_order: 2
+description: "Deep dive into Azure Service Bus for AZ-305: Designing Microsoft Azure Infrastructure Solutions — features, SKUs, integration patterns, and exam scenarios."
+permalink: /01-service-bus/
+mermaid: true
 ---
 
 # ☁️ Azure Service Bus
@@ -229,3 +232,8 @@ flowchart TD
 | Replay messages after consumer failure | Service Bus does **not** support replay — use Event Hubs |
 | Dead-letter failed messages automatically | Service Bus **Dead-Letter Queue** |
 | Duplicate sends must be silently dropped | Service Bus **Duplicate Detection** |
+
+---
+
+[← Back to Home](/az-305-messaging/) | [02 — Azure Storage Queues →](/az-305-study-notes/02-storage-queues/)
+
