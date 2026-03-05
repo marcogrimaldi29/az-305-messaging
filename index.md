@@ -4,7 +4,7 @@ title: Home
 nav_order: 1
 ---
 
-# 📨 AZ-305: Azure Messaging Services — Deep Dive
+# 🥽 AZ-305: Azure Messaging Services — Deep Dive
 {: .no_toc }
 
 **Study Notes & Exam Prep — 2026 Edition**
