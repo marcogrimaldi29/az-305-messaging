@@ -20,7 +20,7 @@ mermaid: true
 > - 🎯 **Purpose:** Deep-dive study notes covering the four core Azure Messaging services tested in the **AZ-305: Designing Microsoft Azure Infrastructure Solutions** exam.  
 > - 📅 **Version:** 2026  
 > - ✍️ **Author:** [Marco Grimaldi](https://www.linkedin.com/in/marco-grimaldi29/)  
-> - 🌐 **Published:** [marcogrimaldi29.com/az-305-messaging](https://marcogrimaldi29.com/az-305-messaging/)
+> - 🌐 **Published:** [🥽 AZ-305: Azure Messaging Services — Deep Dive](https://marcogrimaldi29.com/az-305-messaging/)
 > - 🔗 **Companion repos:** [📘 AZ-305 Study Notes](https://marcogrimaldi29.com/az-305-study-notes/) · [🥽 AZ-305: Data & Analytics Services — Deep Dive](https://marcogrimaldi29.com/az-305-data-analytics/) · [🥽 AZ-305: Azure Compute Services — Deep Dive](https://marcogrimaldi29.com/az-305-compute/)
 
 ---
