@@ -17,6 +17,11 @@ mermaid: true
 [![Personal Hub of Marco Grimaldi](https://img.shields.io/badge/Blog-marcogrimaldi29.com-blue?logo=rss)](https://marcogrimaldi29.com)
 [![AZ-305 Study Notes](https://img.shields.io/badge/AZ--305-Study%20Notes-blue?logo=microsoftazure)](https://marcogrimaldi29.com/az-305-study-notes/)
 
+[Start Studying →](#-what-s-in-this-repository){: .btn .btn-primary .fs-5 .mb-4 .mb-md-0 .mr-2 }
+[View on GitHub](https://github.com/marcogrimaldi29/az-305-messaging){: .btn .fs-5 .mb-4 .mb-md-0 target="_blank" }
+
+---
+
 > - 🎯 **Purpose:** Deep-dive study notes covering the four core Azure Messaging services tested in the **AZ-305: Designing Microsoft Azure Infrastructure Solutions** exam.  
 > - 📅 **Version:** 2026  
 > - ✍️ **Author:** [Marco Grimaldi](https://www.linkedin.com/in/marco-grimaldi29/)  
@@ -66,4 +71,14 @@ Messaging patterns surface across **various exam domains**:
 
 ---
 
-*Not affiliated with or endorsed by Microsoft. Always verify against the latest [Microsoft documentation](https://learn.microsoft.com/en-us/azure/).*
+## ©️ Credits & Acknowledgements
+
+The [Just the Docs](https://github.com/just-the-docs/just-the-docs) theme is used for a clean, documentation-style layout. Licensed under [MIT](https://opensource.org/license/MIT).
+
+Created with the help of AI. Model used: [Claude Sonnet 4.6](https://www.anthropic.com/news/claude-sonnet-4-6). The content has been reviewed and edited by the author for accuracy and clarity, but may contain errors. Always verify against the latest [Microsoft documentation](https://learn.microsoft.com/en-us/azure/).
+
+> *Not affiliated with or endorsed by Microsoft.*
+
+---
+
+[01 — 01 — Azure Service Bus →](/az-305-study-notes/01-service-bus/)
