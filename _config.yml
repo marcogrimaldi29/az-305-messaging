@@ -29,10 +29,12 @@ nav_sort: case_sensitive
 nav_external_links:
   - title: "📘 AZ-305 Study Notes"
     url: https://marcogrimaldi29.com/az-305-study-notes/
-  - title: "🥽 AZ-305: Data & Analytics Services — Deep Dive"
-    url: https://marcogrimaldi29.com/az-305-data-analytics/
   - title: "🥽 AZ-305: Azure Compute Services — Deep Dive"
     url: https://marcogrimaldi29.com/az-305-compute/
+  - title: "🥽 AZ-305: Data & Analytics Services — Deep Dive"
+    url: https://marcogrimaldi29.com/az-305-data-analytics/
+  - title: "🥽 AZ-305: Migration, HA & BCDR — Deep Dive"
+    url: https://marcogrimaldi29.com/az-305-bcdr/
   - title: "📘 AZ-104 Study Notes"
     url: https://marcogrimaldi29.com/az-104-study-notes/
 #  - title: "🏠 marcogrimaldi29.com"
@@ -54,6 +56,9 @@ footer_content: >
   Maintained by <a href="https://www.linkedin.com/in/marco-grimaldi29/">Marco Grimaldi</a>.
   Not affiliated with or endorsed by Microsoft. All content for study purposes only.
   Theme: <a href="https://github.com/just-the-docs/just-the-docs">Just the Docs</a> (MIT).
+  Built with <a href="https://jekyllrb.com/">Jekyll</a> and hosted on <a href="https://pages.github.com/">GitHub Pages</a>.
+  <br>
+  <small>Last updated: {{ site.time | date: "%d %b %Y" }}</small>
 
 # ── Mermaid ──────────────────────────────────────────────────────────
 mermaid:
