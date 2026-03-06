@@ -7,10 +7,10 @@
 [![Personal Hub of Marco Grimaldi](https://img.shields.io/badge/Blog-marcogrimaldi29.com-blue?logo=rss)](https://marcogrimaldi29.com)
 [![AZ-305 Main Notes](https://img.shields.io/badge/AZ--305-Main%20Notes-blue?logo=microsoftazure)](https://marcogrimaldi29.com/az-305-study-notes/)
 
-> 🎯 **Goal:** Master the four Azure Messaging services for the **AZ-305: Designing Microsoft Azure Infrastructure Solutions** exam  
-> 📅 **Notes Version:** 2026  
-> 🌐 **Published site:** [🥽 AZ-305: Azure Messaging Services — Deep Dive](https://marcogrimaldi29.com/az-305-messaging/)  
-> ✍️ **Author:** [Marco Grimaldi](https://www.linkedin.com/in/marco-grimaldi29/)  
+> - 🎯 **Goal:** Master the four Azure Messaging services for the **AZ-305: Designing Microsoft Azure Infrastructure Solutions** exam  
+> - 📅 **Notes Version:** 2026  
+> - 🌐 **Published site:** [🥽 AZ-305: Azure Messaging Services — Deep Dive](https://marcogrimaldi29.com/az-305-messaging/)  
+> - ✍️ **Author:** [Marco Grimaldi](https://www.linkedin.com/in/marco-grimaldi29/)  
 > - 🔗 **Companion repos:** [📘 AZ-305 Study Notes](https://marcogrimaldi29.com/az-305-study-notes/) · [🥽 AZ-305: Azure Compute Services — Deep Dive](https://marcogrimaldi29.com/az-305-compute/) · [🥽 AZ-305: Data & Analytics Services — Deep Dive](https://marcogrimaldi29.com/az-305-data-analytics/) · [🥽 AZ-305: Migration, HA & BCDR — Deep Dive](https://marcogrimaldi29.com/az-305-bcdr/) · [📘 AZ-104 Study Notes](https://marcogrimaldi29.com/az-104-study-notes/)
 
 
@@ -88,7 +88,7 @@ This repository gives you the precise differentiators to answer those questions 
 
 These notes are hosted on **GitHub Pages** and published as a searchable website:
 
-👉 **[marcogrimaldi29.com/az-305-messaging](https://marcogrimaldi29.com/az-305-messaging/)**
+👉 **[🥽 AZ-305: Azure Messaging Services — Deep Dive](https://marcogrimaldi29.com/az-305-messaging/)**
 
 The site includes full-text search, Mermaid diagram rendering, and mobile-friendly navigation.
 

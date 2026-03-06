@@ -13,16 +13,16 @@ baseurl: "/az-305-messaging"
 logo: "/assets/images/logo-sunrise-domain.jpg"
 
 # ── Theme settings ──────────────────────────────────────────────────
-color_scheme: dark
-search_enabled: true
+color_scheme:           dark
+search_enabled:         true
 search:
-  heading_level: 2
-  previews: 3
+  heading_level:        2
+  previews:             3
   preview_words_before: 5
-  preview_words_after: 10
-  tokenizer_separator: /[\s/]+/
-  rel_url: true
-  button: false
+  preview_words_after:  10
+  tokenizer_separator:  /[\s/]+/
+  rel_url:              true
+  button:               false
 
 # ── Navigation ───────────────────────────────────────────────────────
 nav_sort: case_sensitive
