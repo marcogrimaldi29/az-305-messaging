@@ -54,7 +54,7 @@ flowchart TD
 
 ## Master Comparison Table
 
-| Feature | ☁️ Service Bus | 📦 Storage Queues | ⚡ Event Grid | 🌊 Event Hubs |
+| Feature | 📨 Service Bus | 📦 Storage Queues | 🏁 Event Grid | 🟩 Event Hubs |
 |---------|-------------|-----------------|-------------|-------------|
 | **Primary pattern** | Message queue / pub-sub | Simple queue | Event routing | Event streaming |
 | **Message / event size** | 256 KB (Standard) / **100 MB** (Premium) | **64 KB** | **1 MB** | **1 MB** (default) / **~1 MB** max |
