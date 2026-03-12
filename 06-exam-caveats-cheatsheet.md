@@ -182,21 +182,21 @@ flowchart TD
 
     Start --> A{"Stream of events\nat massive scale?"}
     A -->|Yes| B{"Need Kafka compat\nor event replay?"}
-    B -->|Yes| EH["🌊 Event Hubs"]
-    B -->|No| EH2["🌊 Event Hubs\n(still best fit)"]
+    B -->|Yes| EH["🟩 Event Hubs"]
+    B -->|No| EH2["🟩 Event Hubs\n(still best fit)"]
 
     A -->|No| C{"React to Azure\nservice state changes?"}
-    C -->|Yes| EG["⚡ Event Grid\n(System Topic)"]
+    C -->|Yes| EG["🏁 Event Grid\n(System Topic)"]
 
     C -->|No| D{"Custom notifications /\nserverless triggers?"}
-    D -->|Yes| EG2["⚡ Event Grid\n(Custom Topic)"]
+    D -->|Yes| EG2["🏁 Event Grid\n(Custom Topic)"]
 
     D -->|No| E{"Need ordering, DLQ,\ntransactions, or fan-out?"}
-    E -->|Yes| SB["☁️ Service Bus"]
+    E -->|Yes| SB["📨 Service Bus"]
 
     E -->|No| F{"Very cheap,\n> 80 GB, simple?"}
     F -->|Yes| SQ["📦 Storage Queues"]
-    F -->|No| SB2["☁️ Service Bus\n(still a fine choice)"]
+    F -->|No| SB2["📨 Service Bus\n(still a fine choice)"]
 ```
 
 ---

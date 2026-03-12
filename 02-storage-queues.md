@@ -161,4 +161,4 @@ You can alert on `ApproximateMessageCount` to detect growing backlogs.
 
 ---
 
-[← 01 — Azure Service Bus](/az-305-messaging/01-service-bus/) | [02 — Azure Storage Queues →](/az-305-study-notes/02-storage-queues/)
+[← 01 — Azure Service Bus](/az-305-messaging/01-service-bus/) | [03 — Azure Event Grid →](/az-305-messaging/03-event-grid/)
