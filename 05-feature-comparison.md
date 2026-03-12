@@ -33,9 +33,9 @@ flowchart TD
     Q4{"Do you need ordering,\ndeadletter, or transactions?"}
     Q5{"Do you need\n> 80 GB queue storage?"}
 
-    EH["🌊 Event Hubs"]
-    EG["⚡ Event Grid"]
-    SB["☁️ Service Bus"]
+    EH["🟩 Event Hubs"]
+    EG["🏁 Event Grid"]
+    SB["📨 Service Bus"]
     SQ["📦 Storage Queues"]
 
     Q1 -->|Yes| EH

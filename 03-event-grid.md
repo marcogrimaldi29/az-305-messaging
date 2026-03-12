@@ -212,4 +212,4 @@ Event Grid supports three filter types on subscriptions:
 
 ---
 
-[← 02 — Azure Storage Queues](/az-305-messaging/02-storage-queues/) | [04 — Azure Event Hubs →](/az-305-study-notes/04-event-hubs/)
+[← 02 — Azure Storage Queues](/az-305-messaging/02-storage-queues/) | [04 — Azure Event Hubs →](/az-305-messaging/04-event-hubs/)
