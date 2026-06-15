@@ -14,7 +14,7 @@ mermaid: true
 {: .fs-5 .fw-300 }
 
 [![Deploy to GitHub Pages](https://github.com/marcogrimaldi29/az-305-messaging/actions/workflows/pages.yml/badge.svg)](https://github.com/marcogrimaldi29/az-305-messaging/actions/workflows/pages.yml)
-[![Personal Hub of Marco Grimaldi](https://img.shields.io/badge/Blog-marcogrimaldi29.com-blue?logo=rss)](https://marcogrimaldi29.com)
+[![marcogrimaldi29.com](https://img.shields.io/badge/Blog-marcogrimaldi29.com-blue?logo=rss)](https://marcogrimaldi29.com)
 [![AZ-305 Study Notes](https://img.shields.io/badge/AZ--305-Study%20Notes-blue?logo=microsoftazure)](https://marcogrimaldi29.com/az-305-study-notes/)
 
 [Start Studying →](/az-305-messaging/01-service-bus/){: .btn .btn-primary .fs-5 .mb-4 .mb-md-0 .mr-2 }
