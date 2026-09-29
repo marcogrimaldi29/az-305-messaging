@@ -13,7 +13,6 @@ mermaid: true
 **Study Notes & Exam Prep — 2026 Edition**
 {: .fs-5 .fw-300 }
 
-[![Deploy to GitHub Pages](https://github.com/marcogrimaldi29/az-305-messaging/actions/workflows/pages.yml/badge.svg)](https://github.com/marcogrimaldi29/az-305-messaging/actions/workflows/pages.yml)
 [![marcogrimaldi29.com](https://img.shields.io/badge/Blog-marcogrimaldi29.com-blue?logo=rss)](https://marcogrimaldi29.com)
 [![AZ-305 Study Notes](https://img.shields.io/badge/AZ--305-Study%20Notes-blue?logo=microsoftazure)](https://marcogrimaldi29.com/az-305-study-notes/)
 
@@ -72,14 +71,6 @@ Messaging patterns surface across **various exam domains**:
 ## 📈 Analytics
 
 This site uses **[Umami](https://umami.is/)** for privacy-friendly analytics.
-
----
-
-## ⭐ Found These Notes Helpful?
-
-If these notes have helped you prepare for the AZ-305 exam, consider giving the repo a **star on GitHub** — it helps others find these resources and makes the effort of keeping them up-to-date worthwhile. Thank you! 🙌
-
-[⭐ Star this repo](https://github.com/marcogrimaldi29/az-305-messaging){: .btn .btn-outline .fs-5 .mb-4 .mb-md-0 }
 
 ---
 
