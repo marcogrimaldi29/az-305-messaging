@@ -48,7 +48,7 @@ Messaging patterns surface across **various exam domains**:
 
 - **Data Storage:** choosing Storage Queues vs Service Bus for decoupling
 - **Infrastructure Solutions:** event-driven architecture with Event Grid; high-throughput ingestion with Event Hubs
-- **Business Continuity:** geo-disaster recovery for Service Bus Premium; Event Hubs Geo-DR
+- **Business Continuity:** Geo-DR (metadata only) and Geo-Replication (metadata and data) for Service Bus Premium and Event Hubs
 - **Well-Architected Framework:** reliability through async messaging; cost optimisation via tier selection
 
 > ⚠️ The exam frequently presents **scenario-based questions** where multiple services *could* work — knowing the precise differentiators (message size limits, ordering guarantees, replay capability, dead-letter support) is what separates a correct answer from a plausible distractor.

@@ -57,25 +57,25 @@ flowchart TD
 | Feature | 📨 Service Bus | 📦 Storage Queues | 🏁 Event Grid | 🟩 Event Hubs |
 |---------|-------------|-----------------|-------------|-------------|
 | **Primary pattern** | Message queue / pub-sub | Simple queue | Event routing | Event streaming |
-| **Message / event size** | 256 KB (Standard) / **100 MB** (Premium) | **64 KB** | **1 MB** | **1 MB** (default) / **~1 MB** max |
+| **Message / event size** | 256 KB (Standard) / **100 MB** (Premium) | **64 KB** | **1 MB** | **1 MB** (Standard/Premium) / 256 KB (Basic) / **20 MB** (Dedicated) |
 | **Max queue / topic size** | 80 GB | **500 TB** | N/A (push) | N/A (log-based) |
-| **Throughput** | Moderate | Moderate | Up to 10M events/sec | **Millions/sec** |
+| **Throughput** | Moderate | Moderate | Up to 5 MB/s (Basic) / 40 MB/s ingress (Standard) | **Millions/sec** |
 | **Ordering** | **FIFO with Sessions** | Best-effort (FIFO not guaranteed) | Not guaranteed | Per-partition only |
 | **At-least-once delivery** | ✅ | ✅ | ✅ | ✅ |
 | **Exactly-once delivery** | ✅ (peek-lock + settle) | ❌ | ❌ | ❌ |
 | **Dead-letter queue** | ✅ Built-in | ❌ (manual) | ✅ (to Blob) | ❌ |
 | **Message replay** | ❌ | ❌ | ❌ | ✅ |
-| **Retention** | TTL configurable (≤7 days default) | TTL ≤7 days | 24 hours retry window | **1–90 days** |
+| **Retention** | TTL configurable (≤7 days default) | TTL ≤7 days | 24-hour retry window (Basic) / up to 7 days (Standard namespace topics) | **1–90 days** |
 | **Transactions** | ✅ (within namespace) | ❌ | ❌ | ❌ |
 | **Pub/Sub (fan-out)** | ✅ (Topics) | ❌ | ✅ | ✅ (consumer groups) |
 | **Duplicate detection** | ✅ | ❌ | ❌ | ❌ |
 | **Sessions (FIFO groups)** | ✅ | ❌ | ❌ | ❌ |
 | **Kafka compatibility** | ❌ | ❌ | ❌ | ✅ |
 | **Built-in archive** | ❌ | ❌ | ❌ | ✅ (Capture → Blob/ADLS) |
-| **Private Endpoints** | ✅ (Premium) | ✅ | ✅ (Namespace) | ✅ (Premium) |
-| **VNet integration** | ✅ (Premium) | ✅ (Storage FW) | ✅ (Namespace) | ✅ (Premium) |
-| **Geo-DR** | ✅ (Premium) | ✅ (GRS/RA-GRS) | ✅ (built-in) | ✅ (Std+) |
-| **Availability Zones** | ✅ (Premium) | ✅ (ZRS option) | ✅ (built-in) | ✅ (Std+) |
+| **Private Endpoints** | ✅ (Premium) | ✅ | ✅ (custom topics, domains, namespaces) | ✅ (Std+) |
+| **VNet integration** | ✅ (Premium) | ✅ (Storage FW) | ✅ (private endpoints; no service endpoints) | ✅ (Std+) |
+| **Geo-DR** | ✅ (Premium: Geo-DR or Geo-Replication) | ✅ (GRS/RA-GRS) | ⚠️ Metadata only, Microsoft-initiated (Basic; not namespaces) | ✅ (Geo-DR Std+; Geo-Replication Premium/Dedicated) |
+| **Availability Zones** | ✅ (Premium) | ✅ (ZRS option) | ✅ (built-in) | ✅ (all tiers, automatic) |
 | **SLA** | 99.9% / **99.99%** (Premium+AZ) | 99.9% / **99.99%** (RA-GRS read) | **99.99%** | 99.9% / **99.99%** (Dedicated) |
 | **Pricing model** | Per operation / Per MU | Per operation | Per operation (per million) | Per TU / PU / CU |
 | **Relative cost** | Medium | **Lowest** | Low | Medium–High |
@@ -114,7 +114,7 @@ Use this table when a scenario describes an **event-driven** or **streaming** ne
 | Low-volume discrete events (notifications) | ✅ | Overkill |
 | High-throughput stream (>1M events/sec) | ❌ | ✅ |
 | Replay events after failure | ❌ | ✅ |
-| Long-term retention (>24h) | ❌ | ✅ (up to 90 days) |
+| Long-term retention (>7 days) | ❌ | ✅ (up to 90 days) |
 | Multiple independent stream readers | ✅ (subscriptions) | ✅ (consumer groups) |
 | Kafka-compatible producers | ❌ | ✅ |
 | Archive stream to ADLS Gen2 | ❌ | ✅ (Capture) |
@@ -146,11 +146,11 @@ Use this table when a scenario describes an **event-driven** or **streaming** ne
 |---------|---------|
 | Storage Queues | **64 KB** ← smallest |
 | Event Grid | **1 MB** |
-| Event Hubs | **1 MB** (default; configurable up to ~1 MB in Standard) |
+| Event Hubs | **1 MB** (Standard and Premium); 256 KB (Basic); **20 MB** (Dedicated) |
 | Service Bus Standard | **256 KB** |
 | Service Bus Premium | **100 MB** ← largest |
 
-> ⚠️ **Exam Caveat — Classic Trap:** If a scenario says *"messages up to 1 MB"*, both Event Grid and Event Hubs support this, but they serve entirely different patterns. If the scenario says *"messages up to 50 MB"*, only **Service Bus Premium** qualifies.
+> ⚠️ **Exam Caveat — Classic Trap:** If a scenario says *"messages up to 1 MB"*, both Event Grid and Event Hubs support this, but they serve entirely different patterns. If the scenario says *"messages up to 50 MB"*, only **Service Bus Premium** qualifies (Event Hubs Dedicated stops at 20 MB).
 
 ---
 
@@ -160,7 +160,7 @@ Use this table when a scenario describes an **event-driven** or **streaming** ne
 |---------|-----------|---------|
 | Storage Queues | TTL ≤ 7 days (messages deleted on dequeue) | ❌ |
 | Service Bus | TTL configurable (messages deleted on settlement) | ❌ |
-| Event Grid | 24-hour retry window only | ❌ |
+| Event Grid | Basic: 24-hour retry window. Standard: up to 7 days on namespace topics | ❌ |
 | Event Hubs | 1–90 days (log-based, not deleted on read) | ✅ |
 
 ---
@@ -171,10 +171,10 @@ Use this table when a scenario describes an **event-driven** or **streaming** ne
 |---------|-----------------|----------------------|-------------|
 | Service Bus | ✅ Premium | ✅ Premium | ✅ All tiers |
 | Storage Queues | ✅ All tiers | ✅ All tiers | ✅ All tiers |
-| Event Grid | ✅ Namespace (Std/Prem) | ❌ | ✅ All tiers |
-| Event Hubs | ✅ Premium/Dedicated | ✅ Premium/Dedicated | ✅ All tiers |
+| Event Grid | ✅ Custom topics, domains and namespaces (not system topics) | ❌ | ✅ All tiers |
+| Event Hubs | ✅ Standard/Premium/Dedicated | ✅ Standard/Premium/Dedicated | ✅ Standard/Premium/Dedicated |
 
-> ⚠️ **Exam Caveat:** Storage Queues have private endpoint support on **all tiers** (it's a Storage account feature). Service Bus, Event Grid (namespace), and Event Hubs require a **Premium/Dedicated tier** for private endpoint support.
+> ⚠️ **Exam Caveat:** Storage Queues have private endpoint support on **all tiers** (it's a Storage account feature). Event Hubs supports private endpoints from **Standard** up (not Basic), and Event Grid supports them on custom topics, domains and namespaces (not system topics). Only **Service Bus** needs its **Premium** tier for private endpoints.
 
 ---
 
@@ -183,11 +183,11 @@ Use this table when a scenario describes an **event-driven** or **streaming** ne
 | Service | Built-in Geo-Redundancy | Active-Active | Notes |
 |---------|------------------------|---------------|-------|
 | Storage Queues | ✅ GRS/RA-GRS | ❌ | Replicates queue data |
-| Service Bus | ✅ Geo-DR (Premium) | ❌ (metadata only) | Messages NOT replicated |
-| Event Grid | ✅ Built-in (all tiers) | ✅ Automatic | Fully managed |
-| Event Hubs | ✅ Geo-DR (Std+) | ❌ (metadata only) | Messages NOT replicated |
+| Service Bus | ✅ Geo-DR or Geo-Replication (Premium) | ❌ (secondary is a hot standby) | Geo-DR: metadata only. Geo-Replication: metadata **and messages** |
+| Event Grid | ⚠️ Metadata only, to the paired region (custom topics, domains and system topics; not namespaces) | ❌ | Best-effort, Microsoft-initiated failover; event data isn't replicated |
+| Event Hubs | ✅ Geo-DR (Std+), Geo-Replication (Premium/Dedicated) | ❌ (secondary is a hot standby) | Geo-DR: metadata only. Geo-Replication: metadata, **events** and consumer offsets |
 
-> ⚠️ **Exam Caveat:** Event Grid is the **only service** where geo-redundancy is fully managed and automatic with no extra tier requirement. Service Bus and Event Hubs Geo-DR replicate **metadata only**, not in-flight messages.
+> ⚠️ **Exam Caveat:** Event Grid's geo-disaster recovery costs nothing and needs no setup, but it's **best effort**: Microsoft decides when to fail over to the paired region, only **metadata** is replicated, and namespaces (Standard tier) aren't covered. Service Bus and Event Hubs **Geo-DR** replicate **metadata only**, not in-flight messages. To replicate the messages or events too, use **Geo-Replication** (Service Bus Premium, Event Hubs Premium or Dedicated), which you promote yourself during an outage.
 
 ---
 

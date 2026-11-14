@@ -71,15 +71,15 @@ Service Bus messages are deleted once settled. Event Hubs retains the log for 1�
 > ❌ "Service Bus Geo-DR ensures no messages are lost during regional failure"  
 > ✅ Service Bus and Event Hubs Geo-DR replicate **metadata only** (entity definitions)
 
-Messages in flight on the primary are **not** replicated. For zero message loss during regional failover, implement application-level active replication (dual-write to two namespaces).
+Messages in flight on the primary are **not** replicated. When messages or events must survive a regional outage, use **Geo-Replication**, which replicates metadata **and** data: Service Bus Premium, or Event Hubs Premium or Dedicated. For zero message loss, choose **synchronous** replication (RPO 0, at the cost of higher latency). Service Bus can't use Geo-DR and Geo-Replication on the same namespace.
 
 ---
 
-### Trap 7 — Partition count is immutable in Event Hubs
-> ❌ "After launch we can increase partitions if throughput grows"  
-> ✅ Event Hubs partition count is **fixed at creation**
+### Trap 7 — Partition count is immutable in Event Hubs Basic and Standard
+> ❌ "After launch we can increase partitions on our Standard event hub if throughput grows"  
+> ✅ In Basic and Standard, partition count is **fixed at creation**. Only **Premium and Dedicated** can add partitions later, and none of the tiers can remove them
 
-Plan partitions upfront based on expected parallelism. Increasing partitions requires creating a new Event Hub.
+Plan partitions upfront based on expected parallelism. On Basic and Standard, more partitions means creating a new Event Hub. On Premium and Dedicated, adding partitions changes the partition-key mapping, so per-key ordering isn't preserved across the change.
 
 ---
 
@@ -95,7 +95,7 @@ Plan partitions upfront based on expected parallelism. Increasing partitions req
 > ❌ "Private endpoints for Storage Queues require a Premium storage tier"  
 > ✅ Private endpoints on Azure Storage (including queues) are available on **all storage tiers**
 
-Service Bus, Event Hubs, and Event Grid namespace require a Premium/Dedicated tier for private endpoints. Storage is different.
+Of the other services, only Service Bus needs its Premium tier for private endpoints. Event Hubs supports them from Standard up (not Basic), and Event Grid supports them on custom topics, domains and namespaces (not system topics).
 
 ---
 
@@ -128,7 +128,7 @@ Cross-namespace atomic operations require saga patterns or compensating transact
 |---------|---------|-------------|
 | Storage Queues | **64 KB** | "Sixty-four is tiny" |
 | Event Grid | **1 MB** | "Grid = grid paper = small" |
-| Event Hubs | **1 MB** | "Same as Grid" |
+| Event Hubs | **1 MB** (Standard/Premium; Basic 256 KB, Dedicated 20 MB) | "Same as Grid" |
 | Service Bus Standard | **256 KB** | "Four times Storage Queue" |
 | Service Bus Premium | **100 MB** | "One hundred — largest" |
 
@@ -138,7 +138,7 @@ Cross-namespace atomic operations require saga patterns or compensating transact
 |---------|-----------|
 | Storage Queues | ≤ 7 days (or infinite with `-1`) |
 | Service Bus | Configurable; default 14 days |
-| Event Grid | 24-hour retry window |
+| Event Grid | 24-hour retry window (Basic); up to 7 days on namespace topics (Standard) |
 | Event Hubs Standard | **1–7 days** |
 | Event Hubs Premium/Dedicated | **1–90 days** |
 
@@ -163,14 +163,16 @@ Cross-namespace atomic operations require saga patterns or compensating transact
 | Event Hubs Basic | **1** consumer group |
 | Event Hubs Standard | **20** consumer groups |
 | Event Hubs Premium | **100** consumer groups |
+| Event Hubs Dedicated | **1,000** consumer groups |
 
 ### Partition Limits
 
-| Service | Max Partitions |
-|---------|---------------|
-| Event Hubs Standard | **32** |
-| Event Hubs Premium | **100** |
-| Event Hubs Dedicated | **2,000** |
+| Service | Max Partitions (per event hub) | Add partitions later? |
+|---------|---------------|---------------|
+| Event Hubs Basic | **32** | ❌ |
+| Event Hubs Standard | **32** | ❌ |
+| Event Hubs Premium | **100** (and 200 per PU across the namespace) | ✅ Increase only |
+| Event Hubs Dedicated | **1,024** (and 2,000 per CU) | ✅ Increase only |
 
 ---
 
@@ -226,12 +228,15 @@ flowchart TD
 | Fan-out to different backends | **Event Grid** or Service Bus Topics |
 | Queue > 80 GB | **Storage Queues** |
 | Lowest cost queue, no special features | **Storage Queues** |
-| Private endpoint, no premium cost | **Storage Queues** (Storage account) |
+| Private endpoint, no premium cost | **Storage Queues** (Storage account); also Event Hubs Standard and Event Grid custom topics |
 | 99.99% SLA, no premium fee | **Event Grid** |
 | 99.99% SLA on Service Bus | Premium + **Availability Zones** |
 | 99.99% SLA on Event Hubs | **Dedicated** |
 | Atomic write across queues | **Service Bus Transactions** (same namespace) |
 | Large messages > 256 KB | **Service Bus Premium** |
+| No message loss in a regional outage | **Service Bus Premium Geo-Replication** (synchronous) |
+| Event data must survive a regional outage | **Event Hubs Geo-Replication** (Premium or Dedicated) |
+| Add partitions to a live event hub | **Event Hubs Premium or Dedicated** |
 | > 90-day event retention | ❌ None natively — archive to Blob via Capture |
 
 ---
@@ -246,10 +251,10 @@ Before sitting the exam, verify you can answer these without hesitation:
 - [ ] Which is the only service that supports event replay?
 - [ ] What is the max message size in Storage Queues?
 - [ ] What does Event Hubs Capture output to, and in what format?
-- [ ] What does Service Bus Geo-DR replicate? What does it NOT replicate?
+- [ ] What does Service Bus Geo-DR replicate, and what does Geo-Replication add?
 - [ ] Which service has 99.99% SLA on all tiers?
 - [ ] Which Event Hubs tier supports Kafka?
-- [ ] Can Event Hubs partition count be changed after creation?
+- [ ] Which Event Hubs tiers can add partitions after creation, and what does that do to ordering?
 - [ ] What is the max event size in Event Grid?
 - [ ] What is the maximum retention period for Event Hubs?
 
