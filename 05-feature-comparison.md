@@ -74,7 +74,7 @@ flowchart TD
 | **Built-in archive** | ❌ | ❌ | ❌ | ✅ (Capture → Blob/ADLS) |
 | **Private Endpoints** | ✅ (Premium) | ✅ | ✅ (Namespace) | ✅ (Premium) |
 | **VNet integration** | ✅ (Premium) | ✅ (Storage FW) | ✅ (Namespace) | ✅ (Premium) |
-| **Geo-DR** | ✅ (Premium) | ✅ (GRS/RA-GRS) | ✅ (built-in) | ✅ (Std+) |
+| **Geo-DR** | ✅ (Premium: Geo-DR or Geo-Replication) | ✅ (GRS/RA-GRS) | ✅ (built-in) | ✅ (Geo-DR Std+; Geo-Replication Premium/Dedicated) |
 | **Availability Zones** | ✅ (Premium) | ✅ (ZRS option) | ✅ (built-in) | ✅ (Std+) |
 | **SLA** | 99.9% / **99.99%** (Premium+AZ) | 99.9% / **99.99%** (RA-GRS read) | **99.99%** | 99.9% / **99.99%** (Dedicated) |
 | **Pricing model** | Per operation / Per MU | Per operation | Per operation (per million) | Per TU / PU / CU |
@@ -183,11 +183,11 @@ Use this table when a scenario describes an **event-driven** or **streaming** ne
 | Service | Built-in Geo-Redundancy | Active-Active | Notes |
 |---------|------------------------|---------------|-------|
 | Storage Queues | ✅ GRS/RA-GRS | ❌ | Replicates queue data |
-| Service Bus | ✅ Geo-DR (Premium) | ❌ (metadata only) | Messages NOT replicated |
+| Service Bus | ✅ Geo-DR or Geo-Replication (Premium) | ❌ (secondary is a hot standby) | Geo-DR: metadata only. Geo-Replication: metadata **and messages** |
 | Event Grid | ✅ Built-in (all tiers) | ✅ Automatic | Fully managed |
-| Event Hubs | ✅ Geo-DR (Std+) | ❌ (metadata only) | Messages NOT replicated |
+| Event Hubs | ✅ Geo-DR (Std+), Geo-Replication (Premium/Dedicated) | ❌ (secondary is a hot standby) | Geo-DR: metadata only. Geo-Replication: metadata, **events** and consumer offsets |
 
-> ⚠️ **Exam Caveat:** Event Grid is the **only service** where geo-redundancy is fully managed and automatic with no extra tier requirement. Service Bus and Event Hubs Geo-DR replicate **metadata only**, not in-flight messages.
+> ⚠️ **Exam Caveat:** Event Grid is the **only service** where geo-redundancy is fully managed and automatic with no extra tier requirement. Service Bus and Event Hubs **Geo-DR** replicate **metadata only**, not in-flight messages. To replicate the messages or events too, use **Geo-Replication** (Service Bus Premium, Event Hubs Premium or Dedicated), which you promote yourself during an outage.
 
 ---
 

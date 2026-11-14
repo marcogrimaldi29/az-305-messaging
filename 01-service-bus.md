@@ -118,6 +118,7 @@ When enabled, Service Bus stores a hash of `MessageId` for a configurable **hist
 | **VNet Service Endpoints** | ❌ | ❌ | ✅ |
 | **Private Endpoints** | ❌ | ❌ | ✅ |
 | **Geo-Disaster Recovery** | ❌ | ❌ | ✅ |
+| **Geo-Replication** | ❌ | ❌ | ✅ |
 | **Availability Zones** | ❌ | ❌ | ✅ |
 | **Dedicated resources** | ❌ | ❌ | ✅ (Messaging Units) |
 | **Customer-managed keys** | ❌ | ❌ | ✅ |
@@ -125,7 +126,7 @@ When enabled, Service Bus stores a hash of `MessageId` for a configurable **hist
 > ⚠️ **Exam Caveat — Most Tested SKU Gaps:**
 > - Topics require **Standard or Premium** (Basic has queues only)
 > - VNet integration and Private Endpoints require **Premium**
-> - Geo-DR requires **Premium**
+> - Geo-DR and Geo-Replication require **Premium**
 > - Large messages (>256 KB) require **Premium**
 
 ---
@@ -198,7 +199,21 @@ Service Bus supports **atomic transactions** across operations within the same n
 ### Geo-Disaster Recovery (Geo-DR)
 Premium only. Pairs a **primary** and **secondary** namespace in different regions. Metadata (queues, topics, subscriptions) replicates asynchronously. On failover, the secondary namespace's FQDN alias takes over.
 
-> ⚠️ **Exam Caveat:** Geo-DR replicates **metadata only** — messages in flight on the primary are NOT replicated. For message-level replication, use **Active Replication** pattern at the application layer or **Event Hubs Geo-DR** (which has the same caveat).
+> ⚠️ **Exam Caveat:** Geo-DR replicates **metadata only** — messages in flight on the primary are NOT replicated. When messages must survive a regional outage, use **Geo-Replication** instead.
+
+### Geo-Replication
+Premium only. Continuously replicates **metadata and data** from the primary region to a secondary region: entities and their configuration, the messages in them, and every message state and property change. The secondary is a hot standby that clients can't read from or write to until it's promoted.
+
+| Aspect | Detail |
+|--------|--------|
+| **Secondary regions** | One (currently) |
+| **Replication modes** | **Synchronous**: committed in both regions before the client gets an acknowledgment, so RPO is 0, but latency is higher and the namespace depends on both regions. **Asynchronous**: lower latency, with a configurable maximum replication lag (publishers are throttled when it's reached) |
+| **Promotion** | Always customer-initiated, never automatic. **Planned** waits for replication to catch up (the namespace is read-only meanwhile); **forced** is immediate and can lose or duplicate recent messages |
+| **Endpoint** | The same namespace hostname — no alias and no connection string change. Promotion repoints it to the new primary |
+| **Limitations** | Can't be combined with Geo-DR on the same namespace. Large messages aren't supported yet, so the 100 MB Premium message size doesn't apply |
+| **Cost** | Messaging Units in every region, plus a charge per GB replicated |
+
+> ⚠️ **Exam Caveat:** Microsoft recommends Geo-Replication over Geo-DR for most disaster recovery scenarios. If a scenario requires **no message loss** during a regional failover, the answer is Service Bus Premium with Geo-Replication in **synchronous** mode.
 
 ### Message Lock (Peek-Lock)
 The default receive mode. The broker locks the message for a configurable lock duration (max 5 minutes). The consumer must either `Complete` (delete), `Abandon` (re-enqueue), `DeadLetter`, or `Defer` before the lock expires.
@@ -229,6 +244,7 @@ flowchart TD
 | Atomic send across multiple queues | Service Bus **Transactions** (same namespace) |
 | Message larger than 256 KB | Service Bus **Premium** |
 | Isolate Service Bus from public internet | Service Bus Premium + **Private Endpoint** |
+| No message loss during a regional outage | Service Bus Premium + **Geo-Replication** (synchronous) |
 | Replay messages after consumer failure | Service Bus does **not** support replay — use Event Hubs |
 | Dead-letter failed messages automatically | Service Bus **Dead-Letter Queue** |
 | Duplicate sends must be silently dropped | Service Bus **Duplicate Detection** |

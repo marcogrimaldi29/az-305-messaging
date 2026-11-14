@@ -73,12 +73,12 @@ Partitions are the unit of parallelism in Event Hubs. Each partition is an indep
 | Property | Detail |
 |----------|--------|
 | Default partitions | 4 (Standard/Premium) |
-| Max partitions | 32 (Standard) / **2,000** (Premium / Dedicated) |
-| Partition count | **Set at creation; cannot be changed** |
+| Max partitions per event hub | 32 (Basic / Standard) / **100** (Premium) / **1,024** (Dedicated) |
+| Partition count | **Fixed at creation** in Basic and Standard; can be **increased, never decreased**, in Premium and Dedicated |
 | Ordering guarantee | Guaranteed **within a partition** |
 | Partition routing | By partition key (hash) or round-robin |
 
-> ⚠️ **Exam Caveat:** Partition count is **immutable after creation**. If a scenario requires more partitions later, a new Event Hub must be created. Plan capacity upfront.
+> ⚠️ **Exam Caveat:** In **Basic and Standard**, partition count is **immutable after creation**. If a scenario requires more partitions later, a new Event Hub must be created, so plan capacity upfront. **Premium and Dedicated** can add partitions to an existing event hub, but adding partitions changes how partition keys map to partitions: events sent with the same key after the change can land on a different partition, so per-key ordering isn't preserved across it.
 
 ### Consumer Groups
 A consumer group is an independent view of the entire stream — each consumer group maintains its own **offset** (position in the stream). This enables multiple independent consumers to read the same data at their own pace without interfering with each other.
@@ -137,9 +137,11 @@ Unlike queues, Event Hubs retains events for a configurable **retention period**
 | **Schema Registry** | ❌ | ✅ | ✅ | ✅ |
 | **VNet / Private Endpoint** | ❌ | ❌ | ✅ | ✅ |
 | **Geo-DR** | ❌ | ✅ | ✅ | ✅ |
+| **Geo-Replication** | ❌ | ❌ | ✅ | ✅ |
 | **Availability Zones** | ❌ | ✅ (auto) | ✅ (auto) | ✅ |
 | **Customer-managed keys** | ❌ | ❌ | ✅ | ✅ |
-| **Max partitions** | 32 | 32 | 100 | 2,000 |
+| **Max partitions (per event hub)** | 32 | 32 | 100 | 1,024 |
+| **Add partitions after creation** | ❌ | ❌ | ✅ | ✅ |
 | **Dedicated cluster** | ❌ | ❌ | ❌ | ✅ |
 | **Pricing** | Per TU | Per TU | Per PU | Per CU (hourly) |
 
@@ -194,7 +196,17 @@ Event Hubs exposes a **Kafka endpoint** on port 9093 (TLS). Kafka clients can pr
 
 Event Hubs Geo-DR pairs a **primary** and **secondary** namespace. Like Service Bus Geo-DR, it replicates **metadata only** (Event Hub definitions, consumer groups) — not messages in flight. On failover, the secondary becomes the active namespace via an alias FQDN.
 
-**Active Geo-Replication** (message-level): Must be implemented at the **application layer** using dual-write producers.
+For event data, Event Hubs also has **Geo-Replication**. Both options need a customer-initiated failover or promotion; Microsoft never fails over for you.
+
+| | Geo-DR | Geo-Replication |
+|---|--------|-----------------|
+| **Tiers** | Standard, Premium, Dedicated | **Premium, Dedicated** (same tier in both regions) |
+| **Replicates** | Metadata only: event hubs, consumer groups and their settings | Metadata, **event data** and **consumer offsets** |
+| **Endpoint** | Alias FQDN that points to the active namespace | The same namespace hostname, repointed on promotion |
+| **Failover** | One-way: the pairing is removed and there's no failback | Promote the secondary at any time, **planned** or **forced**; the old primary becomes the secondary |
+| **Events after failover** | Events in the old primary aren't available in the secondary | **Synchronous** mode: RPO 0. **Asynchronous** mode: a forced promotion can lose events within the configured maximum lag |
+
+> ⚠️ **Exam Caveat:** Geo-DR keeps the **configuration** ready in another region but **doesn't replicate events**. If a scenario needs event data to survive a regional outage, the answer is **Geo-Replication**, which requires **Premium or Dedicated**.
 
 ---
 
@@ -228,6 +240,8 @@ Event Hubs includes a built-in **Schema Registry** (Standard and above) for mana
 | Archive streaming data to ADLS Gen2 | **Event Hubs Capture** |
 | Need > 7-day event retention | **Event Hubs Premium or Dedicated** (up to 90 days) |
 | Isolate Event Hubs from public internet | **Event Hubs Premium + Private Endpoint** |
+| Keep event data available after a regional outage | **Event Hubs Geo-Replication** (Premium or Dedicated) |
+| Add partitions after the event hub is live | **Premium or Dedicated** (Basic and Standard need a new event hub) |
 | Multiple independent analytics pipelines on same stream | **Event Hubs Consumer Groups** |
 | Guaranteed event ordering across all partitions | NOT possible in Event Hubs — ordering is per-partition only |
 
