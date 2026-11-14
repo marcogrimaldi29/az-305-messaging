@@ -83,6 +83,7 @@ flowchart LR
 | **Custom Topics** | User-defined topics for application-generated events |
 | **Partner Topics** | Events from third-party SaaS partners (e.g., Auth0, SAP, Tribal) |
 | **Event Domains** | Namespace for managing thousands of topics (multi-tenant SaaS scenarios) |
+| **Namespace Topics** | Standard-tier topics inside an **Event Grid namespace**; support **pull** delivery and push to Event Hubs or webhooks |
 
 ### Subscriptions
 An event subscription defines:
@@ -145,13 +146,17 @@ Event Grid supports three filter types on subscriptions:
 
 ## SKU / Tiers
 
-| Tier | Notes |
-|------|-------|
-| **Basic** | Per-event pricing; default for custom topics and system topics |
-| **Standard** (namespace topics) | Higher throughput, pull delivery model, MQTT support (preview) |
-| **Premium** (namespace topics) | VNet injection, private endpoints |
+| Feature | Basic | Standard |
+|---------|-------|----------|
+| **Resources** | Custom topics, system topics, partner topics, domains | **Event Grid namespace**: namespace topics and the **MQTT broker** (MQTT v3.1.1 and v5) |
+| **Delivery** | **Push** to webhooks and Azure services (Functions, Service Bus, Storage Queues, Event Hubs, Hybrid Connections) | **Pull** over HTTP, or **push** to Event Hubs and webhooks |
+| **Azure system events and partner events** | ✅ | ❌ |
+| **Throughput** | Up to 5 MB/s | Up to 40 MB/s ingress, 80 MB/s egress |
+| **Retention** | 1 day | Up to 7 days on namespace topics |
+| **Scale and billing** | Billed per operation | Throughput units (TUs), with autoscale |
+| **Private endpoints** | ✅ Custom topics and domains (not system topics) | ✅ |
 
-> ⚠️ **Exam Caveat:** Classic Event Grid resources (system topics, custom topics) use a **per-operation** pricing model with no dedicated tier. The newer **namespace topics** (part of the Event Grid namespace resource) introduce Standard/Premium with pull delivery and MQTT — the exam may distinguish between these two resource models.
+> ⚠️ **Exam Caveat:** Event Grid has **two** tiers, Basic and Standard. There's no Premium tier, and private endpoints don't need Standard. **Basic** is the classic push model, and it's the only tier for Azure **system events** (BlobCreated, resource changes) and partner events. **Standard** is the **Event Grid namespace**, which adds the MQTT broker, pull delivery and higher throughput — the exam may distinguish between these two resource models.
 
 ---
 
@@ -175,8 +180,8 @@ Event Grid supports three filter types on subscriptions:
 | **SAS tokens** | Time-limited publish tokens |
 | **Microsoft Entra ID** | Preferred for event publishing from managed identities |
 | **Webhook validation** | Event Grid validates webhook endpoints via a handshake before delivering events |
-| **Private Endpoints** | Available on Event Grid namespace (Standard/Premium) |
-| **IP filtering** | Restrict inbound events to specific IP ranges |
+| **Private Endpoints** | Custom topics and domains (Basic) and namespaces (Standard); not system topics |
+| **IP filtering** | Restrict inbound events to specific IP ranges on topics, domains and namespaces |
 | **Managed Identity for delivery** | Event Grid can deliver events using a managed identity to downstream handlers |
 
 ---
@@ -207,6 +212,8 @@ Event Grid supports three filter types on subscriptions:
 | Guaranteed ordering of events required | **NOT Event Grid** → use Service Bus with Sessions |
 | Event payload > 1 MB | **NOT Event Grid** → use Service Bus or Event Hubs |
 | Multi-tenant SaaS app sending per-customer events | **Event Domains** |
+| IoT devices need publish-subscribe over MQTT | **Event Grid Standard** (namespace MQTT broker) |
+| Consumers must pull events at their own pace | **Event Grid Standard** (namespace topics, pull delivery) |
 | High-throughput telemetry stream (millions/sec) | **NOT Event Grid** → use **Event Hubs** |
 | Audit all resource changes across a subscription | **Event Grid** (Azure Resource Manager system topic → Storage) |
 

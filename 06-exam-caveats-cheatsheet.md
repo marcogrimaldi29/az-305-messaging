@@ -138,7 +138,7 @@ Cross-namespace atomic operations require saga patterns or compensating transact
 |---------|-----------|
 | Storage Queues | ≤ 7 days (or infinite with `-1`) |
 | Service Bus | Configurable; default 14 days |
-| Event Grid | 24-hour retry window |
+| Event Grid | 24-hour retry window (Basic); up to 7 days on namespace topics (Standard) |
 | Event Hubs Standard | **1–7 days** |
 | Event Hubs Premium/Dedicated | **1–90 days** |
 
