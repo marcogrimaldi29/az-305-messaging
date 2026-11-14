@@ -88,6 +88,7 @@ A consumer group is an independent view of the entire stream — each consumer g
 | Basic | 1 consumer group |
 | Standard | Up to **20** consumer groups |
 | Premium | Up to **100** consumer groups |
+| Dedicated | Up to **1,000** consumer groups |
 
 ### Offset & Replay
 Unlike queues, Event Hubs retains events for a configurable **retention period**. Consumers can reset their offset to any point within the retention window and **replay events** — a key differentiator from Service Bus.
@@ -121,7 +122,7 @@ Unlike queues, Event Hubs retains events for a configurable **retention period**
 - 1–16 PUs per namespace
 - Fixed price per PU regardless of usage volume
 
-> ⚠️ **Exam Caveat:** Standard TUs cap at **20 MB/s ingress** (20 TUs). For higher throughput, use **Premium** or **Dedicated**. Auto-inflate is only available on Standard.
+> ⚠️ **Exam Caveat:** Standard caps at **40 TUs** per namespace, which is **40 MB/s ingress**. For higher throughput, use **Premium** or **Dedicated**. Auto-inflate is only available on Standard.
 
 ---
 
@@ -129,16 +130,18 @@ Unlike queues, Event Hubs retains events for a configurable **retention period**
 
 | Feature | Basic | Standard | Premium | Dedicated |
 |---------|-------|----------|---------|-----------|
-| **Consumer groups** | 1 | 20 | 100 | Unlimited |
-| **Brokered connections** | 100 | 1,000 | 10,000 | Unlimited |
+| **Max event size** | 256 KB | 1 MB | 1 MB | 20 MB |
+| **Consumer groups (per event hub)** | 1 | 20 | 100 | 1,000 |
+| **Brokered connections** | 100 | 5,000 | 10,000 per PU | 100,000 per CU |
 | **Retention** | 1 day | 1–7 days | 1–90 days | 1–90 days |
 | **Capture** | ❌ | ✅ | ✅ | ✅ |
 | **Kafka surface** | ❌ | ✅ | ✅ | ✅ |
 | **Schema Registry** | ❌ | ✅ | ✅ | ✅ |
-| **VNet / Private Endpoint** | ❌ | ❌ | ✅ | ✅ |
+| **VNet / Private Endpoint** | ❌ | ✅ | ✅ | ✅ |
+| **IP firewall** | ❌ | ✅ | ✅ | ✅ |
 | **Geo-DR** | ❌ | ✅ | ✅ | ✅ |
 | **Geo-Replication** | ❌ | ❌ | ✅ | ✅ |
-| **Availability Zones** | ❌ | ✅ (auto) | ✅ (auto) | ✅ |
+| **Availability Zones** | ✅ (auto) | ✅ (auto) | ✅ (auto) | ✅ (needs a minimum number of CUs) |
 | **Customer-managed keys** | ❌ | ❌ | ✅ | ✅ |
 | **Max partitions (per event hub)** | 32 | 32 | 100 | 1,024 |
 | **Add partitions after creation** | ❌ | ❌ | ✅ | ✅ |
@@ -156,7 +159,7 @@ Unlike queues, Event Hubs retains events for a configurable **retention period**
 | Premium | **99.95%** |
 | Dedicated | **99.99%** |
 
-> ⚠️ **Exam Caveat:** Event Hubs Dedicated is the only tier with a **99.99% SLA** — achieved through Availability Zone support in its isolated single-tenant cluster.
+> ⚠️ **Exam Caveat:** Event Hubs Dedicated is the only tier with a **99.99% SLA**. Availability zones aren't what sets it apart: every tier is zone-redundant automatically in regions that have them.
 
 ---
 
@@ -223,9 +226,9 @@ Event Hubs includes a built-in **Schema Registry** (Standard and above) for mana
 | **SAS tokens** | Namespace or entity-level; `Send`, `Listen`, `Manage` claims |
 | **Microsoft Entra ID (RBAC)** | Preferred; assign `Azure Event Hubs Data Sender/Receiver` roles |
 | **Managed Identity** | Allows producers/consumers to authenticate without secrets |
-| **Private Endpoints** | Premium and Dedicated only |
+| **Private Endpoints** | Standard, Premium and Dedicated (not Basic) |
 | **Customer-managed keys** | Premium and Dedicated only |
-| **IP filtering** | Available on all tiers |
+| **IP filtering** | Standard, Premium and Dedicated (not Basic) |
 
 ---
 
@@ -239,7 +242,7 @@ Event Hubs includes a built-in **Schema Registry** (Standard and above) for mana
 | Replace self-managed Kafka cluster | **Event Hubs** (Kafka-compatible endpoint, Standard+) |
 | Archive streaming data to ADLS Gen2 | **Event Hubs Capture** |
 | Need > 7-day event retention | **Event Hubs Premium or Dedicated** (up to 90 days) |
-| Isolate Event Hubs from public internet | **Event Hubs Premium + Private Endpoint** |
+| Isolate Event Hubs from public internet | **Event Hubs Standard or higher + Private Endpoint** (not Basic) |
 | Keep event data available after a regional outage | **Event Hubs Geo-Replication** (Premium or Dedicated) |
 | Add partitions after the event hub is live | **Premium or Dedicated** (Basic and Standard need a new event hub) |
 | Multiple independent analytics pipelines on same stream | **Event Hubs Consumer Groups** |

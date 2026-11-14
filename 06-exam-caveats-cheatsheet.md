@@ -95,7 +95,7 @@ Plan partitions upfront based on expected parallelism. On Basic and Standard, mo
 > ❌ "Private endpoints for Storage Queues require a Premium storage tier"  
 > ✅ Private endpoints on Azure Storage (including queues) are available on **all storage tiers**
 
-Service Bus, Event Hubs, and Event Grid namespace require a Premium/Dedicated tier for private endpoints. Storage is different.
+Of the other services, only Service Bus needs its Premium tier for private endpoints. Event Hubs supports them from Standard up (not Basic), and Event Grid supports them on custom topics, domains and namespaces (not system topics).
 
 ---
 
@@ -128,7 +128,7 @@ Cross-namespace atomic operations require saga patterns or compensating transact
 |---------|---------|-------------|
 | Storage Queues | **64 KB** | "Sixty-four is tiny" |
 | Event Grid | **1 MB** | "Grid = grid paper = small" |
-| Event Hubs | **1 MB** | "Same as Grid" |
+| Event Hubs | **1 MB** (Standard/Premium; Basic 256 KB, Dedicated 20 MB) | "Same as Grid" |
 | Service Bus Standard | **256 KB** | "Four times Storage Queue" |
 | Service Bus Premium | **100 MB** | "One hundred — largest" |
 
@@ -163,6 +163,7 @@ Cross-namespace atomic operations require saga patterns or compensating transact
 | Event Hubs Basic | **1** consumer group |
 | Event Hubs Standard | **20** consumer groups |
 | Event Hubs Premium | **100** consumer groups |
+| Event Hubs Dedicated | **1,000** consumer groups |
 
 ### Partition Limits
 
@@ -227,7 +228,7 @@ flowchart TD
 | Fan-out to different backends | **Event Grid** or Service Bus Topics |
 | Queue > 80 GB | **Storage Queues** |
 | Lowest cost queue, no special features | **Storage Queues** |
-| Private endpoint, no premium cost | **Storage Queues** (Storage account) |
+| Private endpoint, no premium cost | **Storage Queues** (Storage account); also Event Hubs Standard and Event Grid custom topics |
 | 99.99% SLA, no premium fee | **Event Grid** |
 | 99.99% SLA on Service Bus | Premium + **Availability Zones** |
 | 99.99% SLA on Event Hubs | **Dedicated** |

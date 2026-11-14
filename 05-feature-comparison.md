@@ -57,7 +57,7 @@ flowchart TD
 | Feature | 📨 Service Bus | 📦 Storage Queues | 🏁 Event Grid | 🟩 Event Hubs |
 |---------|-------------|-----------------|-------------|-------------|
 | **Primary pattern** | Message queue / pub-sub | Simple queue | Event routing | Event streaming |
-| **Message / event size** | 256 KB (Standard) / **100 MB** (Premium) | **64 KB** | **1 MB** | **1 MB** (default) / **~1 MB** max |
+| **Message / event size** | 256 KB (Standard) / **100 MB** (Premium) | **64 KB** | **1 MB** | **1 MB** (Standard/Premium) / 256 KB (Basic) / **20 MB** (Dedicated) |
 | **Max queue / topic size** | 80 GB | **500 TB** | N/A (push) | N/A (log-based) |
 | **Throughput** | Moderate | Moderate | Up to 10M events/sec | **Millions/sec** |
 | **Ordering** | **FIFO with Sessions** | Best-effort (FIFO not guaranteed) | Not guaranteed | Per-partition only |
@@ -72,10 +72,10 @@ flowchart TD
 | **Sessions (FIFO groups)** | ✅ | ❌ | ❌ | ❌ |
 | **Kafka compatibility** | ❌ | ❌ | ❌ | ✅ |
 | **Built-in archive** | ❌ | ❌ | ❌ | ✅ (Capture → Blob/ADLS) |
-| **Private Endpoints** | ✅ (Premium) | ✅ | ✅ (Namespace) | ✅ (Premium) |
-| **VNet integration** | ✅ (Premium) | ✅ (Storage FW) | ✅ (Namespace) | ✅ (Premium) |
+| **Private Endpoints** | ✅ (Premium) | ✅ | ✅ (custom topics, domains, namespaces) | ✅ (Std+) |
+| **VNet integration** | ✅ (Premium) | ✅ (Storage FW) | ✅ (Namespace) | ✅ (Std+) |
 | **Geo-DR** | ✅ (Premium: Geo-DR or Geo-Replication) | ✅ (GRS/RA-GRS) | ✅ (built-in) | ✅ (Geo-DR Std+; Geo-Replication Premium/Dedicated) |
-| **Availability Zones** | ✅ (Premium) | ✅ (ZRS option) | ✅ (built-in) | ✅ (Std+) |
+| **Availability Zones** | ✅ (Premium) | ✅ (ZRS option) | ✅ (built-in) | ✅ (all tiers, automatic) |
 | **SLA** | 99.9% / **99.99%** (Premium+AZ) | 99.9% / **99.99%** (RA-GRS read) | **99.99%** | 99.9% / **99.99%** (Dedicated) |
 | **Pricing model** | Per operation / Per MU | Per operation | Per operation (per million) | Per TU / PU / CU |
 | **Relative cost** | Medium | **Lowest** | Low | Medium–High |
@@ -146,11 +146,11 @@ Use this table when a scenario describes an **event-driven** or **streaming** ne
 |---------|---------|
 | Storage Queues | **64 KB** ← smallest |
 | Event Grid | **1 MB** |
-| Event Hubs | **1 MB** (default; configurable up to ~1 MB in Standard) |
+| Event Hubs | **1 MB** (Standard and Premium); 256 KB (Basic); **20 MB** (Dedicated) |
 | Service Bus Standard | **256 KB** |
 | Service Bus Premium | **100 MB** ← largest |
 
-> ⚠️ **Exam Caveat — Classic Trap:** If a scenario says *"messages up to 1 MB"*, both Event Grid and Event Hubs support this, but they serve entirely different patterns. If the scenario says *"messages up to 50 MB"*, only **Service Bus Premium** qualifies.
+> ⚠️ **Exam Caveat — Classic Trap:** If a scenario says *"messages up to 1 MB"*, both Event Grid and Event Hubs support this, but they serve entirely different patterns. If the scenario says *"messages up to 50 MB"*, only **Service Bus Premium** qualifies (Event Hubs Dedicated stops at 20 MB).
 
 ---
 
@@ -171,10 +171,10 @@ Use this table when a scenario describes an **event-driven** or **streaming** ne
 |---------|-----------------|----------------------|-------------|
 | Service Bus | ✅ Premium | ✅ Premium | ✅ All tiers |
 | Storage Queues | ✅ All tiers | ✅ All tiers | ✅ All tiers |
-| Event Grid | ✅ Namespace (Std/Prem) | ❌ | ✅ All tiers |
-| Event Hubs | ✅ Premium/Dedicated | ✅ Premium/Dedicated | ✅ All tiers |
+| Event Grid | ✅ Custom topics, domains and namespaces (not system topics) | ❌ | ✅ All tiers |
+| Event Hubs | ✅ Standard/Premium/Dedicated | ✅ Standard/Premium/Dedicated | ✅ Standard/Premium/Dedicated |
 
-> ⚠️ **Exam Caveat:** Storage Queues have private endpoint support on **all tiers** (it's a Storage account feature). Service Bus, Event Grid (namespace), and Event Hubs require a **Premium/Dedicated tier** for private endpoint support.
+> ⚠️ **Exam Caveat:** Storage Queues have private endpoint support on **all tiers** (it's a Storage account feature). Event Hubs supports private endpoints from **Standard** up (not Basic), and Event Grid supports them on custom topics, domains and namespaces (not system topics). Only **Service Bus** needs its **Premium** tier for private endpoints.
 
 ---
 
